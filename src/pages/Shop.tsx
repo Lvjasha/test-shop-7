@@ -6,7 +6,7 @@ import { Col, Row } from 'antd';
 import ProductCard from '../components/ProductCard';
 
 const Shop = observer(() => {
-  console.log(productStore.products);
+  //   console.log(productStore.products);
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -17,8 +17,10 @@ const Shop = observer(() => {
         console.error('Ошибка при загрузке продуктов:', error);
       }
     };
-    // fetchProducts().then(productStore.setProducts.bind(productStore));
-    loadProducts();
+    // Загружаем продукты только если они не были загружены ранее
+    if (productStore.products.length === 0) {
+      loadProducts();
+    }
   }, []);
 
   return (
