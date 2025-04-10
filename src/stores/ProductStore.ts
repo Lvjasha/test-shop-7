@@ -12,6 +12,7 @@ export interface Product {
 class ProductStore {
   products: Product[] = [];
   cart: Product[] = [];
+  //   cost: number = 0;
   //   cost: number | null = 0
   //   quantity: number | null = 0;
 
@@ -89,6 +90,10 @@ class ProductStore {
     this.cart = this.cart.filter((item) => item.id !== id);
 
     localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+  calcCost() {
+    return this.cart.reduce((sum, cart) => sum + cart.price * cart.quantity, 0);
   }
 }
 

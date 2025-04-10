@@ -1,12 +1,14 @@
-import { List } from 'antd';
+// import { List } from 'antd';
 import { observer } from 'mobx-react-lite';
 import { productStore } from '../stores/ProductStore';
 import CartItem from '../components/CartItem';
 
 const Cart = observer(() => {
+  const totalCost = productStore.calcCost();
+
   return (
     <main className="container">
-      <List
+      {/* <List
         itemLayout="horizontal"
         dataSource={productStore.cart}
         renderItem={(item) => (
@@ -15,7 +17,7 @@ const Cart = observer(() => {
             onRemove={() => productStore.removeFromCart(item.id)}
           />
         )}
-      />
+      /> */}
       <table>
         <thead>
           <tr>
@@ -27,16 +29,18 @@ const Cart = observer(() => {
           </tr>
         </thead>
         <tbody>
-          {/* {productStore.cart.map((item) => (
+          {productStore.cart.map((item) => (
             <CartItem
               key={item.id}
-              {...item}
-              removeFromCart={productStore.removeFromCart}
+              item={item}
+              onRemove={() => productStore.removeFromCart(item.id)}
             />
-          ))} */}
+          ))}
           <tr>
-            <th>Итого:</th>
             <th></th>
+            <th></th>
+            <th>Итого:</th>
+            <th>{totalCost}</th>
           </tr>
         </tbody>
       </table>
