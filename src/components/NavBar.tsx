@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { navigationStore } from '../stores/NavigationStore';
-import CartIcon from './CartIcon';
+
 import { Menu, MenuProps } from 'antd';
+// import CartIcon from './CartIcon';
 
 const NavBar = observer(() => {
   const history = useNavigate();
@@ -14,7 +15,7 @@ const NavBar = observer(() => {
 
   return (
     <header>
-      <div className="text-white bg-dark py-3">
+      <div className="text-white bg-dark py-2">
         <Menu mode="horizontal" theme="dark">
           {navigationStore.items && navigationStore.items.length > 0 ? (
             navigationStore.items.map(
@@ -29,7 +30,9 @@ const NavBar = observer(() => {
                           ? 'lightblue'
                           : 'transparent',
                     }}
+                    icon={item.icon}
                   >
+                    {/* <CartIcon /> */}
                     {item.label}
                   </Menu.Item>
                 ) : null // В случае, если item равен null, просто возвращаем null

@@ -4,3 +4,4 @@ export const fetchProducts = async () => {
   console.log('Данные из API:', data);
   return data;
 };
+// https://test-frontend.dev.int.perx.ru/api/goods/

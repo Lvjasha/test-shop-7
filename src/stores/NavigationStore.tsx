@@ -1,5 +1,7 @@
+// import { ShoppingCartOutlined } from '@ant-design/icons';
 import { makeAutoObservable } from 'mobx';
 import type { MenuProps } from 'antd';
+// import CartIcon from '../components/CartIcon';
 
 export interface NavBar {
   activePage: string;
@@ -16,12 +18,14 @@ class NavigationStore {
     {
       label: 'Shop',
       key: '/',
-      onClick: () => this.handleNavigation('/'), // Переход на главную страницу
+      icon: null,
+      // onClick: () => {}, // Переход на главную страницу
     },
     {
       label: 'Cart',
       key: '/cart',
-      onClick: () => this.handleNavigation('cart'), // Переход на страницу корзины
+      // icon: <CartIcon />,
+      // onClick: () => {}, // Переход на страницу корзины
       disabled: false,
     },
   ];
@@ -42,11 +46,11 @@ class NavigationStore {
       this.activePage = savedPage; // Восстанавливаем активную страницу
     }
   }
-  // setNavigation()
-  handleNavigation = (page: string) => {
-    navigationStore.setActivePage(page); // Устанавливаем активную страницу
-    this.history(`/${page}`); // Переход на новую страницу
-  };
+
+  // handleNavigation = (page: string) => {
+  //   navigationStore.setActivePage(page); // Устанавливаем активную страницу
+  //   this.history(`/${page}`); // Переход на новую страницу
+  // };
 
   setCurrent(key: string) {
     this.current = key;
